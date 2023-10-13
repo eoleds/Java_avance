@@ -16,16 +16,6 @@ public class udp {
                 String received = new String(inPacket.getData(), 0, inPacket.getLength());
                 System.out.println("Greetings, " + received);
 
-                /*if (received==) {
-                    InetAddress senderAddress = inPacket.getAddress();
-                    int senderPort = inPacket.getPort();
-                    String responseMessage = "Greetings, " + received;
-                    System.out.println("Sending response: " + responseMessage);
-
-                    byte[] responseData = responseMessage.getBytes();
-                    DatagramPacket outPacket = new DatagramPacket(buf, buf.length, senderAddress, senderPort);
-                    socket.send(outPacket);
-                }*/
             }
         }
          catch (Exception e) {
