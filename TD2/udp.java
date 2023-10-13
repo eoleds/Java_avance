@@ -1,5 +1,6 @@
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.*;
 
 public class udp {
@@ -13,7 +14,7 @@ public class udp {
                 DatagramPacket inPacket = new DatagramPacket(buf, buf.length);
                 socket.receive(inPacket);
                 String received = new String(inPacket.getData(), 0, inPacket.getLength());
-                System.out.println("Greetings, "+ received);
+                System.out.println("Greetings, " + received);
 
                 /*if (received==) {
                     InetAddress senderAddress = inPacket.getAddress();
@@ -25,12 +26,9 @@ public class udp {
                     DatagramPacket outPacket = new DatagramPacket(buf, buf.length, senderAddress, senderPort);
                     socket.send(outPacket);
                 }*/
-                if (received.equals("end")) {
-                    running = false;
-                    continue;
-                }
             }
-        } catch (Exception e) {
+        }
+         catch (Exception e) {
             e.printStackTrace();
         }
     }
