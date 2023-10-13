@@ -4,7 +4,7 @@ import java.net.*;
 public class Net {
 
     public static void main(String[] args) throws IOException {
-        DatagramSocket socket = new DatagramSocket(4445);
+        DatagramSocket socket = new DatagramSocket(1789);
         boolean running = true;
         byte[] buf = new byte[256];
 
