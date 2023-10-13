@@ -1,5 +1,8 @@
-package TD2;
-import java.net.*;
+package TD2.udpv2;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 public class UdpSend {
     public static void main(String[] args) {
@@ -7,7 +10,7 @@ public class UdpSend {
 
             InetAddress serverAddress = InetAddress.getByName("127.0.0.1");
             DatagramSocket socket = new DatagramSocket();
-            byte[] buf = "eole".getBytes();
+            byte[] buf = "test".getBytes();
             //String message = "test";
             DatagramPacket packet = new DatagramPacket(buf, buf.length, serverAddress, 1789);
             socket.send(packet);
