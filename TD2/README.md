@@ -33,3 +33,44 @@ Miscellaneous:
     What are the blocking operations in this code?
     --> The blocking operation in this code is socket.receive(inPacket). The receive method of the DatagramSocket is a blocking operation, meaning it will wait until a datagram packet is received on the specified socket. The program will block at this line until data is received, or until an exception occurs (e.g., if there is an issue with the socket).
 
+//chatgpt
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
+public class UDPServer {
+    public static void main(String[] args) {
+        int PORT_NUMBER = 12345; // Replace with your desired port number
+
+        try {
+            DatagramSocket socket = new DatagramSocket(PORT_NUMBER);
+            byte[] receiveData = new byte[1024];
+
+            System.out.println("UDP server is running on port " + PORT_NUMBER);
+
+            while (true) {
+                DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+                socket.receive(receivePacket);
+
+                String receivedMessage = new String(receivePacket.getData(), 0, receivePacket.getLength());
+
+                if (receivedMessage.equals("XXXX")) {
+                    String senderAddress = receivePacket.getAddress().getHostAddress();
+                    int senderPort = receivePacket.getPort();
+                    String responseMessage = "Greetings, " + senderAddress;
+
+                    System.out.println("Received message: " + receivedMessage);
+                    System.out.println("Sending response: " + responseMessage);
+
+                    byte[] responseData = responseMessage.getBytes();
+                    DatagramPacket responsePacket = new DatagramPacket(responseData, responseData.length, receivePacket.getAddress(), senderPort);
+                    socket.send(responsePacket);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+    
