@@ -72,5 +72,41 @@ public class UDPServer {
     }
 }
 
+//autre
+ import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 
+public class UDPServer {
+    public static void main(String[] args)  {
+        try {
+            DatagramSocket socket = new DatagramSocket(4445);
+            boolean running = true;
+            byte[] buf = new byte[256];
+            while (running) {
+                DatagramPacket inPacket = new DatagramPacket(buf, buf.length);
+                socket.receive(inPacket);
+                String received = new String(inPacket.getData(), 0, inPacket.getLength());
+                System.out.println("Received message: " + received);
+
+                if (received.equals("XXXX")) {
+                    InetAddress senderAddress = inPacket.getAddress();
+                    int senderPort = inPacket.getPort();
+                    String responseMessage = "Greetings, " + senderAddress;
+                    System.out.println("Sending response: " + responseMessage);
+
+                    byte[] responseData = responseMessage.getBytes();
+                    DatagramPacket outPacket = new DatagramPacket(buf, buf.length, senderAddress, senderPort);
+                    socket.send(outPacket);
+                }
+                if (received.equals("end")) {
+                running = false;
+                continue;
+            }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+ 
     
