@@ -18,12 +18,18 @@ Reception:
 Sending:
 
     What are the lines responsible for sending messages?
+    --> DatagramPacket outPacket = new DatagramPacket(buf, buf.length, senderAddress, senderPort);
+    socket.send(outPacket);
     What is the content of the message sent?
-    Where is the message sent? (which address and port)
+    Where is the message sent? (which address and port)?
+    --> The message is sent to the address and port stored in the senderAddress and senderPort variables. These values are obtained from the inPacket object, which contains the address and port of the sender of the received message.
 
 Miscellaneous:
 
     What class represents an IP adress?
+    --> InetAddress
     Under which conditions does the program terminates?
+    --> When it receives a message that is equal to "end," it sets the running variable to false, and the loop stops. This effectively terminates the program.
     What are the blocking operations in this code?
+    --> The blocking operation in this code is socket.receive(inPacket). The receive method of the DatagramSocket is a blocking operation, meaning it will wait until a datagram packet is received on the specified socket. The program will block at this line until data is received, or until an exception occurs (e.g., if there is an issue with the socket).
 
