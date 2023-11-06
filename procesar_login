@@ -1,0 +1,20 @@
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtiene los datos del formulario.
+    $usuario = $_POST["usuario"];
+    $contrasena = $_POST["contrasena"];
+
+    // Realiza la validación (puedes realizar la autenticación real aquí).
+    if ($usuario === "usuario_ejemplo" && $contrasena === "contrasena_ejemplo") {
+        // Autenticación exitosa, redirige a una página de bienvenida o realiza acciones adicionales.
+        header("Location: admitted.php");
+        exit();
+    } else {
+        // Autenticación fallida, redirige de nuevo a la página de inicio de sesión con un mensaje de error.
+        header("Location: inicio_sesion.php?error=1");
+        exit();
+    }
+} else {
+    // Si alguien intenta acceder directamente a este script, redirige de nuevo a la página de inicio de sesión.
+    header("Location: bienvenido.php");
+    exit();
+}
