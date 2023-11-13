@@ -64,7 +64,7 @@ public class UserController implements Controller {
         System.out.println("[UserController]: " +  user.getPseudo() + "deco") ;
     }
 
-    public void onAgentLoginChange(User user, String newLogin) {
+    public void UserLoginChange(User user, String newLogin) {
         if (!userList.contains(user))
             userList.add(user);
 
